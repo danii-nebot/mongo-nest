@@ -1,6 +1,6 @@
 # mongo-nest
 
-> drag&drop UI for deeply nested collections in mongodb
+> WIP App for sane management of deeply nested collections in mongodb
 
 ## Build Setup
 

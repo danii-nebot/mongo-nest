@@ -1,7 +1,7 @@
 {
   "name": "mongo-nest",
-  "version": "0.0.0",
-  "description": "drag&drop UI for deeply nested collections in mongodb",
+  "version": "0.0.1",
+  "description": "WIP App for sane management of deeply nested collections in mongodb",
   "scripts": {
     "build": "npm run pack && build",
     "build:dir": "npm run pack && build --dir",
@@ -54,8 +54,12 @@
       ]
     }
   },
-  "author": "Greg Holguin <simulatedgreg@gmail.com>",
+  "author": "Dani Nebot <daniign@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/danii-nebot/mongo-nest.git"
+  },
   "devDependencies": {
     "babel-core": "^6.8.0",
     "babel-loader": "^6.2.4",
