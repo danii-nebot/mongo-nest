@@ -1,0 +1,15 @@
+{
+  "name": "mongo-nest",
+  "version": "0.0.0",
+  "description": "drag&drop UI for deeply nested collections in mongodb",
+  "main": "./dist/main.js",
+  "dependencies": {
+    "vue": "^2.1.10",
+    "vue-electron": "^1.0.6",
+    "vue-router": "^2.1.2",
+    "vuedraggable": "^2.8.3-rc0",
+    "vuex": "^2.1.1"
+  },
+  "devDependencies": {},
+  "author": "Dani Nebot <daniign@gmail.com>"
+}
