@@ -5,28 +5,17 @@
     </p>
 
     <div class="drag">
-      <h2>List 1 draggable</h2>
-      <draggable class="dragArea" :list="list1" :options="{group:'people'}" @change="log">
-        <div v-for="(element, index) in list1">
-          {{element.name}} {{index}}
-        </div>
-      </draggable>
-
-      <h2>List 2 draggable</h2>
-      <draggable class="dragArea" :list="list2" :options="{group:'people'}" @change="log">
-        <div v-for="(element, index) in list2" :key="index">{{element.name}}</div>
+      <h2>Mongo Collections</h2>
+      <h3>Connected: {{ connected }}</h3>
+      <draggable class="dragArea" :list="collections" :options="{group:'people'}" @change="log">
+        <div v-for="(element, index) in collections">{{element.name}}</div>
       </draggable>
     </div>
 
     <div class="normal">
-      <h2>List 1 v-for</h2>
+      <h2>Collections v-for</h2>
       <div>
-        <div v-for="element in list1">{{element.name}}</div>
-      </div>
-
-      <h2>List 2 v-for</h2>
-      <div>
-        <div v-for="element in list2">{{element.name}}</div>
+        <div v-for="element in collections">{{element.name}}</div>
       </div>
     </div>
   </div>
@@ -35,6 +24,7 @@
 <script>
   import draggable from 'vuedraggable'
   import store from '../../vuex/store'
+  import { mapGetters } from 'vuex'
 
   export default {
     components: {
@@ -42,31 +32,35 @@
     },
     data() {
       return {
-        list1: [
-          { name: 'John', id: 1 },
-          { name: 'Joao', id: 2 },
-          { name: 'Jean', id: 3 },
-          { name: 'Gerard', id: 4 }
-        ],
-        list2: [
-          { name: 'Juan', id: 5 },
-          { name: 'Edgard', id: 6 },
-          { name: 'Johnson', id: 7 }
-        ]
+        // list1: [
+        //   { name: 'John', id: 1 },
+        //   { name: 'Joao', id: 2 },
+        //   { name: 'Jean', id: 3 },
+        //   { name: 'Gerard', id: 4 }
+        // ]
       }
     },
+    computed: {
+      collections () {
+        return this.$store.getters.mongoCollections.slice() // clone
+      },
+      ...mapGetters({
+        // map this.xxx to store.getters.xxx
+        connected: 'mongoConnected'
+      })
+    },
     methods: {
-      add: function () {
-        this.list.push({ name: 'Juan' })
-      },
-      replace: function () {
-        this.list = [{ name: 'Edgard' }]
-      },
-      clone: function (el) {
-        return {
-          name: el.name + ' cloned'
-        }
-      },
+      // add: function () {
+      //   this.list.push({ name: 'Juan' })
+      // },
+      // replace: function () {
+      //   this.list = [{ name: 'Edgard' }]
+      // },
+      // clone: function (el) {
+      //   return {
+      //     name: el.name + ' cloned'
+      //   }
+      // },
       log: function (evt) {
         console.log(evt)
         store.dispatch('incrementMain')
@@ -74,6 +68,7 @@
       }
     },
     created() {
+      store.dispatch('connect')
       // Set $route values that are not preset during unit testing
       if (process.env.NODE_ENV === 'testing') {
         this.$route = {
