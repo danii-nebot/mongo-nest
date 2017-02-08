@@ -4,6 +4,7 @@
   "description": "WIP App for sane management of deeply nested collections in mongodb",
   "main": "./dist/main.js",
   "dependencies": {
+    "mongodb": "^2.2.22",
     "vue": "^2.1.10",
     "vue-electron": "^1.0.6",
     "vue-router": "^2.1.2",
